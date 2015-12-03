@@ -51,6 +51,8 @@
 ///--------------------------------------
 
 - (void)beginLockedContentAccessForFileAtPath:(NSString *)filePath {
+	if (!filePath) return;
+
     dispatch_barrier_sync(_synchronizationQueue, ^{
         PFMultiProcessFileLock *fileLock = _locksDictionary[filePath];
         if (!fileLock) {
